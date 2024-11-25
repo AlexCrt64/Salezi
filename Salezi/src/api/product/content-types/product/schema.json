@@ -4,7 +4,8 @@
   "info": {
     "singularName": "product",
     "pluralName": "products",
-    "displayName": "Product"
+    "displayName": "Product",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -22,6 +23,12 @@
     },
     "Stock": {
       "type": "biginteger"
+    },
+    "vendeur": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::vendeur.vendeur",
+      "inversedBy": "products"
     }
   }
 }
