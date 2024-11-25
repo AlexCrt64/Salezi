@@ -456,6 +456,7 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     Price: Schema.Attribute.Float;
     publishedAt: Schema.Attribute.DateTime;
     Stock: Schema.Attribute.BigInteger;
+    Type: Schema.Attribute.Enumeration<['Livre', 'CD', 'Electronique']>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

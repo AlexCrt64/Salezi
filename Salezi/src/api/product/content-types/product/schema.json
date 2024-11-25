@@ -29,6 +29,14 @@
       "relation": "manyToOne",
       "target": "api::vendeur.vendeur",
       "inversedBy": "products"
+    },
+    "Type": {
+      "type": "enumeration",
+      "enum": [
+        "Livre",
+        "CD",
+        "Electronique"
+      ]
     }
   }
 }
