@@ -37,6 +37,12 @@
         "CD",
         "Electronique"
       ]
+    },
+    "transactions": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::transaction.transaction",
+      "mappedBy": "product"
     }
   }
 }

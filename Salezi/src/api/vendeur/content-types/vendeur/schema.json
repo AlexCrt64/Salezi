@@ -25,6 +25,12 @@
       "relation": "oneToMany",
       "target": "api::product.product",
       "mappedBy": "vendeur"
+    },
+    "transactions": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::transaction.transaction",
+      "mappedBy": "vendeur"
     }
   }
 }

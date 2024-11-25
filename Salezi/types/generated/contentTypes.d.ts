@@ -456,6 +456,10 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     Price: Schema.Attribute.Float;
     publishedAt: Schema.Attribute.DateTime;
     Stock: Schema.Attribute.BigInteger;
+    transactions: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::transaction.transaction'
+    >;
     Type: Schema.Attribute.Enumeration<['Livre', 'CD', 'Electronique']>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -467,6 +471,7 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
 export interface ApiTransactionTransaction extends Struct.CollectionTypeSchema {
   collectionName: 'transactions';
   info: {
+    description: '';
     displayName: 'Transaction';
     pluralName: 'transactions';
     singularName: 'transaction';
@@ -485,11 +490,14 @@ export interface ApiTransactionTransaction extends Struct.CollectionTypeSchema {
       'api::transaction.transaction'
     > &
       Schema.Attribute.Private;
+    product: Schema.Attribute.Relation<'manyToOne', 'api::product.product'>;
     publishedAt: Schema.Attribute.DateTime;
     Quantity: Schema.Attribute.BigInteger;
+    Type: Schema.Attribute.Enumeration<['Vente', 'Achat']>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    vendeur: Schema.Attribute.Relation<'manyToOne', 'api::vendeur.vendeur'>;
   };
 }
 
@@ -518,6 +526,10 @@ export interface ApiVendeurVendeur extends Struct.CollectionTypeSchema {
     products: Schema.Attribute.Relation<'oneToMany', 'api::product.product'>;
     publishedAt: Schema.Attribute.DateTime;
     Telephone: Schema.Attribute.String;
+    transactions: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::transaction.transaction'
+    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
