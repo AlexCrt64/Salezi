@@ -24,7 +24,7 @@
     "Stock": {
       "type": "biginteger"
     },
-    "vendeur": {
+    "seller": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::vendeur.vendeur",

@@ -424,6 +424,7 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     Name: Schema.Attribute.String;
     Price: Schema.Attribute.Float;
     publishedAt: Schema.Attribute.DateTime;
+    seller: Schema.Attribute.Relation<'manyToOne', 'api::vendeur.vendeur'>;
     Stock: Schema.Attribute.BigInteger;
     transactions: Schema.Attribute.Relation<
       'oneToMany',
@@ -432,7 +433,6 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    vendeur: Schema.Attribute.Relation<'manyToOne', 'api::vendeur.vendeur'>;
   };
 }
 
@@ -474,7 +474,7 @@ export interface ApiVendeurVendeur extends Struct.CollectionTypeSchema {
   collectionName: 'vendeurs';
   info: {
     description: '';
-    displayName: 'Vendeur';
+    displayName: 'Seller';
     pluralName: 'vendeurs';
     singularName: 'vendeur';
   };
