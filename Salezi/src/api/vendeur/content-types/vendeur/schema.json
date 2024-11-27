@@ -4,7 +4,8 @@
   "info": {
     "singularName": "vendeur",
     "pluralName": "vendeurs",
-    "displayName": "Vendeur"
+    "displayName": "Vendeur",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -17,9 +18,6 @@
     "email": {
       "type": "email"
     },
-    "Telephone": {
-      "type": "string"
-    },
     "products": {
       "type": "relation",
       "relation": "oneToMany",
@@ -31,6 +29,9 @@
       "relation": "oneToMany",
       "target": "api::transaction.transaction",
       "mappedBy": "vendeur"
+    },
+    "Password": {
+      "type": "password"
     }
   }
 }

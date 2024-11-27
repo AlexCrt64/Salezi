@@ -30,19 +30,17 @@
       "target": "api::vendeur.vendeur",
       "inversedBy": "products"
     },
-    "Type": {
-      "type": "enumeration",
-      "enum": [
-        "Livre",
-        "CD",
-        "Electronique"
-      ]
-    },
     "transactions": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::transaction.transaction",
       "mappedBy": "product"
+    },
+    "category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::category.category",
+      "inversedBy": "products"
     }
   }
 }

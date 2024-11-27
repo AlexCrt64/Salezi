@@ -36,6 +36,14 @@
       "relation": "manyToOne",
       "target": "api::vendeur.vendeur",
       "inversedBy": "transactions"
+    },
+    "Statut": {
+      "type": "enumeration",
+      "enum": [
+        "Pending",
+        "Confirmed",
+        "Refused"
+      ]
     }
   }
 }
