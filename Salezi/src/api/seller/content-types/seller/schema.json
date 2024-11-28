@@ -1,9 +1,9 @@
 {
   "kind": "collectionType",
-  "collectionName": "vendeurs",
+  "collectionName": "sellers",
   "info": {
-    "singularName": "vendeur",
-    "pluralName": "vendeurs",
+    "singularName": "seller",
+    "pluralName": "sellers",
     "displayName": "Seller",
     "description": ""
   },
@@ -22,7 +22,7 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::transaction.transaction",
-      "mappedBy": "vendeur"
+      "mappedBy": "seller"
     },
     "Password": {
       "type": "password"
@@ -31,7 +31,7 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::product.product",
-      "mappedBy": "seller"
+      "mappedBy": "Sellers"
     }
   }
 }

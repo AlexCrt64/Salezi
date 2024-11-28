@@ -24,12 +24,6 @@
     "Stock": {
       "type": "biginteger"
     },
-    "seller": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::vendeur.vendeur",
-      "inversedBy": "products"
-    },
     "transactions": {
       "type": "relation",
       "relation": "oneToMany",
@@ -40,6 +34,12 @@
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::category.category",
+      "inversedBy": "products"
+    },
+    "Sellers": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::seller.seller",
       "inversedBy": "products"
     }
   }

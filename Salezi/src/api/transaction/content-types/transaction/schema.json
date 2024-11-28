@@ -31,12 +31,6 @@
       "target": "api::product.product",
       "inversedBy": "transactions"
     },
-    "vendeur": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::vendeur.vendeur",
-      "inversedBy": "transactions"
-    },
     "Statut": {
       "type": "enumeration",
       "enum": [
@@ -44,6 +38,12 @@
         "Confirmed",
         "Refused"
       ]
+    },
+    "seller": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::seller.seller",
+      "inversedBy": "transactions"
     }
   }
 }

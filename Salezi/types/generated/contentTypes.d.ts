@@ -424,8 +424,44 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     Name: Schema.Attribute.String;
     Price: Schema.Attribute.Float;
     publishedAt: Schema.Attribute.DateTime;
-    seller: Schema.Attribute.Relation<'manyToOne', 'api::vendeur.vendeur'>;
+    Sellers: Schema.Attribute.Relation<'manyToOne', 'api::seller.seller'>;
     Stock: Schema.Attribute.BigInteger;
+    transactions: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::transaction.transaction'
+    >;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiSellerSeller extends Struct.CollectionTypeSchema {
+  collectionName: 'sellers';
+  info: {
+    description: '';
+    displayName: 'Seller';
+    pluralName: 'sellers';
+    singularName: 'seller';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    email: Schema.Attribute.Email;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::seller.seller'
+    > &
+      Schema.Attribute.Private;
+    Name: Schema.Attribute.String;
+    Password: Schema.Attribute.Password;
+    products: Schema.Attribute.Relation<'oneToMany', 'api::product.product'>;
+    publishedAt: Schema.Attribute.DateTime;
     transactions: Schema.Attribute.Relation<
       'oneToMany',
       'api::transaction.transaction'
@@ -461,45 +497,9 @@ export interface ApiTransactionTransaction extends Struct.CollectionTypeSchema {
     product: Schema.Attribute.Relation<'manyToOne', 'api::product.product'>;
     publishedAt: Schema.Attribute.DateTime;
     Quantity: Schema.Attribute.BigInteger;
+    seller: Schema.Attribute.Relation<'manyToOne', 'api::seller.seller'>;
     Statut: Schema.Attribute.Enumeration<['Pending', 'Confirmed', 'Refused']>;
     Type: Schema.Attribute.Enumeration<['Vente', 'Achat']>;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    vendeur: Schema.Attribute.Relation<'manyToOne', 'api::vendeur.vendeur'>;
-  };
-}
-
-export interface ApiVendeurVendeur extends Struct.CollectionTypeSchema {
-  collectionName: 'vendeurs';
-  info: {
-    description: '';
-    displayName: 'Seller';
-    pluralName: 'vendeurs';
-    singularName: 'vendeur';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    email: Schema.Attribute.Email;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::vendeur.vendeur'
-    > &
-      Schema.Attribute.Private;
-    Name: Schema.Attribute.String;
-    Password: Schema.Attribute.Password;
-    products: Schema.Attribute.Relation<'oneToMany', 'api::product.product'>;
-    publishedAt: Schema.Attribute.DateTime;
-    transactions: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::transaction.transaction'
-    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1017,8 +1017,8 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::category.category': ApiCategoryCategory;
       'api::product.product': ApiProductProduct;
+      'api::seller.seller': ApiSellerSeller;
       'api::transaction.transaction': ApiTransactionTransaction;
-      'api::vendeur.vendeur': ApiVendeurVendeur;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;
